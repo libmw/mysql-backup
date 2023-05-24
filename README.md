@@ -13,14 +13,37 @@ DATABASE_PASSWORD=test123
 DATABASE_NAME=user
 #备份路径，默认当前目录
 BACKUP_PATH="./"
-#备份脚本运行时间，默认为每日12点，格式为cron表达式
+#备份脚本运行时间，默认为每日凌晨12点，格式为cron表达式
 RUN_TIME="0 0 0 * * *"
 ```
 
 ## 安装
-
+```bash
 pnpm install
-pnpm index.js
+```
+
+## 运行
+
+建议使用pm2来运行该脚本，因为该脚本需要在后台常驻运行。
+
+如果还没有pm2，请先全局安装：
+
+```javascript
+npm install pm2 -g
+```
+
+安装后执行：
+
+```javascript
+pm2 start index.js --name mysql_backup
+```
+
+检测是否执行成功：
+```javascript
+pm2 list
+```
+如果status为online则执行成功
+
 
 ## cron表达式文档
 
